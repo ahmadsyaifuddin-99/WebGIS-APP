@@ -2,6 +2,12 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.4.13
     </div>
-    <strong>Copyright &copy; 2019 | Nasrullah Siddik <a href="https://gitlab.com/as-shiddiq" target="_BLANK">Gitlab</a> | <a href="bit.ly/YTNSiddik" target="_BLANK">YTChannel</a>.</strong> All rights
+    <strong>Copyright &copy; <span id="year"></span> | Ahmad Syaifuddin <a href="https://github.com/ahmadsyaifuddin-99" target="_BLANK">Github</a>.</strong> All rights
     reserved.
+
+
+    <script>
+      // Get year Dynamic Footer
+      document.getElementById("year").innerHTML = new Date().getFullYear();
+    </script>
   </footer>
