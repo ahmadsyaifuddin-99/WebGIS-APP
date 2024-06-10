@@ -50,7 +50,7 @@
         <li class="treeview">
           <a href="#">
             <i class="fa fa-sitemap"></i>
-            <span>Transaksi</span>
+            <span>Kasus</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
