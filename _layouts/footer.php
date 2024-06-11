@@ -2,7 +2,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.4.13
     </div>
-    <strong>Copyright &copy; <span id="year"></span> | Ahmad Syaifuddin <a href="https://github.com/ahmadsyaifuddin-99" target="_BLANK">Github</a>.</strong> All rights
+    <strong>Copyright &copy; <span id="year"></span> | <a href="https://github.com/ahmadsyaifuddin-99" target="_BLANK">Ahmad Syaifuddin</a>.</strong> All rights
     reserved.
 
 

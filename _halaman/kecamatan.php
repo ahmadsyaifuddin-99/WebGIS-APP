@@ -2,7 +2,7 @@
   $title="Kecamatan";
   $judul=$title;
   $url='kecamatan';
-  if ($session->get('level')!='Admin'){
+  if ($session->get('level')!='Administrator'){
   	redirect(url('beranda'));
   }
 
