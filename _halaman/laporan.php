@@ -61,7 +61,7 @@
                                 <td>{$row['nm_kecamatan']}</td>
                                 <td>{$row['geojson_kecamatan']}</td>
                                 <td>{$row['tgl_isi']}</td>
-                              </tr>";
+                            </tr>";
                     }
                 } else {
                     echo "<tr><td colspan='5'>No data found</td></tr>";
