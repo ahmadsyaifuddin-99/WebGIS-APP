@@ -26,7 +26,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php include '_layouts/head.php'?>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-red sidebar-mini">
 <div class="wrapper">
 <?php
   include '_layouts/header.php';

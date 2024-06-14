@@ -22,7 +22,7 @@
             <i class="fa fa-dashboard"></i> <span>Beranda</span>
           </a>
         </li>
-        <?php if ($session->get('level')=='Administrator'): ?>
+        <?php if ($session->get('level')=='Super Admin'): ?>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-folder"></i>
@@ -37,16 +37,32 @@
           </ul>
         </li>
         <?php endif ?>
-
+        <?php if ($session->get('level')=='Administrator'): ?>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-sitemap"></i>
-            <span>Kasus</span>
+            <i class="fa fa-folder"></i>
+            <span>Master Data</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
+            <!-- <li><a href="<?=url('pengguna')?>"><i class="fa fa-circle-o"></i> Pengguna</a></li> -->
+            <li><a href="<?=url('kecamatan')?>"><i class="fa fa-circle-o"></i> Kecamatan</a></li>
+          </ul>
+        </li>
+        <?php endif ?>
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-sitemap"></i>
+            <span>Data Produksi Pangan</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?=url('leaflet-choroplet')?>"><i class="fa fa-circle-o"></i> Data Pangan Di Kab. Batola</a></li>
             <li><a href="<?=url('hotspot')?>"><i class="fa fa-circle-o"></i> Hotspot</a></li>
           </ul>
         </li>
@@ -62,7 +78,7 @@
           <ul class="treeview-menu">
             <li><a href="<?=url('leaflet-standar')?>"><i class="fa fa-circle-o"></i> Standar</a></li>
             <li><a href="<?=url('leaflet-pointmarker')?>"><i class="fa fa-circle-o"></i> Point Marker</a></li>
-            <li><a href="<?=url('leaflet-choroplet')?>"><i class="fa fa-circle-o"></i> Choroplet</a></li>
+            <!-- <li><a href="<?=url('leaflet-choroplet')?>"><i class="fa fa-circle-o"></i> Choroplet</a></li> -->
             <!-- <li><a href="<?=url('leaflet-point')?>"><i class="fa fa-circle-o"></i> Point</a></li> -->
             <!-- <li><a href="<?=url('leaflet-pointgeojson')?>"><i class="fa fa-circle-o"></i> Point Marker GeoJSON</a></li> -->
             <!-- <li><a href="<?=url('leaflet-cluster')?>"><i class="fa fa-circle-o"></i> Cluster</a></li> -->
@@ -71,6 +87,12 @@
             <!-- <li><a href="<?=url('leaflet-routingmachine')?>"><i class="fa fa-circle-o"></i> Routing Machine</a></li> -->
           </ul>
         </li>
+        <li>
+          <a href="<?=url('laporan')?>">
+            <i class="fa fa-file-excel-o"></i> <span>Laporan</span>
+          </a>
+        </li>
+
         <li>
           <a href="<?=url('logout')?>">
             <i class="fa fa-sign-out"></i> <span>Keluar</span>

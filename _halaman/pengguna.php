@@ -1,8 +1,8 @@
 <?php
   $title="Pengguna";
   $judul=$title;
-  $url='Pengguna';
-  if ($session->get('level') != 'Administrator'){
+  $url='pengguna';
+  if ($session->get('level') != 'Super Admin'){
   	redirect(url('beranda'));
   }
 

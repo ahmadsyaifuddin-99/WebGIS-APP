@@ -6,9 +6,17 @@
 <script src="assets/js/leaflet.ajax.js"></script>
 
 <script type="text/javascript">
-    
-    let selectedPangan = "PADI";
-    
+    <?php
+    $getKecamatan = $db->ObjectBuilder()->get('m_kecamatan');
+    foreach ($getKecamatan as $row) {
+        $db->where('id_kecamatan', $row->id_kecamatan);
+        $db->get('t_hotspot');
+        $data[$row->kd_kecamatan] = $db->count;
+    }
+    ?>
+
+    var HOTSPOT = <?= json_encode($data) ?>;
+
     var map = L.map('mapid').setView([-3.06522, 114.6454817], 10);
 
     // Layer Map Hybrid
@@ -19,7 +27,6 @@
             'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
     });
 
-    // Layer Map Satelite
     let satelliteLayer = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZmF1eml5dXNhcmFobWFuIiwiYSI6ImNsZmpiOXBqYTJnbzUzcnBnNnJzMjB0ZHMifQ.AldZlBJVQaCALzRw-vhWiQ', {
         maxZoom: 20,
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
@@ -27,7 +34,7 @@
             'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
     });
 
-	map.attributionControl.addAttribution('Produksi Pangan &copy; <a href="https://baritokualakab.bps.go.id/">BPS Batola</a>');
+    map.attributionControl.addAttribution('Produksi Pangan &copy; <a href="https://baritokualakab.bps.go.id/">BPS Batola</a>');
 
     map.addLayer(hybridLayer);
 
@@ -41,30 +48,14 @@
     };
 
     info.update = function (props) {
-        this._div.innerHTML = '<h4>Produksi Pangan di Kab. Batola 🌾</h4>' +  (props ?
-        '<b>' + props.KECAMATAN + '</b><br />' + selectedPangan + ': ' + props.PANGAN[selectedPangan] + ' /ton'
+        this._div.innerHTML = '<h4>Produksi Pangan di Kab. Batola 🌾</h4>' + (props ?
+        '<b>' + props.KECAMATAN + '</b><br />' + selectedPangan + ': ' + props.PANGAN[selectedPangan] + ' ton'
         : 'Arahkan kursor ke Kecamatan');
     };
 
     info.addTo(map);
 
-    // legend
-    function iconByName(name) {
-        return '<i class="icon" style="background-color:' + name + ';border-radius:50%"></i>';
-    }
-
-    var baseLayers = [
-        {
-            name: "Hybrid",
-            layer: hybridLayer
-        },
-        {    
-            name: "Satelite",
-            layer: satelliteLayer
-        }
-    ];
-
-    // Get color depending on production value
+    // Legend control
     function getColor(d) {
         return d > 40000 ? '#00441b' : // Hijau sangat gelap
             d > 30000 ? '#238823' : // Hijau gelap
@@ -75,7 +66,6 @@
             '#FFEDA0'; // Krim
     }
 
-    // Legend control
     let legend = L.control({ position: 'bottomright' });
 
     legend.onAdd = function (_map) {
@@ -106,14 +96,13 @@
     });
 
     function style(feature) {
-        let productionValue = feature.properties.PANGAN[selectedPangan] || 0;
         return {
             weight: 2,
             opacity: 1,
             color: 'white',
             dashArray: '3',
             fillOpacity: 0.7,
-            fillColor: getColor(productionValue)
+            fillColor: getColor(HOTSPOT[feature.properties.KODE])
         };
     }
 
@@ -122,7 +111,7 @@
 
         layer.setStyle({
             weight: 5,
-            color: '#d9f0a3',
+            color: '#666',
             dashArray: '',
             fillOpacity: 0.7
         });
@@ -146,7 +135,7 @@
 
         info.update();
     }
-
+    
     function zoomToFeature(e) {
         map.fitBounds(e.target.getBounds());
     }
@@ -159,7 +148,6 @@
         });
     }
 
-    // Load GeoJSON and apply styles
     <?php
         $getKecamatan = $db->ObjectBuilder()->get('m_kecamatan');
         foreach ($getKecamatan as $row) {
@@ -190,13 +178,22 @@
 
     map.addControl(panelLayers);
 
-    // Function to update the map layers
+    // Function to update the map
     function updateMap() {
+        // remove existing layers
         overLayers[0].layers.forEach(function(layerItem) {
-            layerItem.layer.eachLayer(function(layer) {
-                layer.setStyle(style(layer.feature));
-            });
+            map.removeLayer(layerItem.layer);
         });
-        info.update();
+
+        // add new layers with updated styles
+        overLayers[0].layers.forEach(function(layerItem) {
+            layerItem.layer = new L.GeoJSON.AJAX(["assets/unggah/geojson/" + layerItem.layer.file], {
+                style: style,
+                onEachFeature: onEachFeature
+            }).addTo(map);
+        });
     }
+
+    // Initial map update
+    updateMap();
 </script>

@@ -33,7 +33,7 @@
 
 	var geojsonPoint = <?=json_encode($jsonPoint, JSON_PRETTY_PRINT)?>;
 
-   	var map = L.map('mapid').setView([-3.824181, 114.8191513], 11);
+   	var map = L.map('mapid').setView([-3.06522, 114.6454817], 10);
 
    	var LayerKita=L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',

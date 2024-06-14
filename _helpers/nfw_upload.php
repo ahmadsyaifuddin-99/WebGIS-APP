@@ -1,21 +1,19 @@
 <?php
-  function upload($a='',$b='',$c=''){
-      $handle = new \Verot\Upload\Upload($_FILES[$a]);
-      $ex=explode('.',$_FILES[$a]['name']);
-      $ext=$ex[(count($ex)-1)];
-      if ($handle->uploaded) {
-            $handle->file_new_name_body=rand(1,100).date('dmyhis');
-            $handle->file_new_name_ext=$ext;
-            $handle->file_force_extension=false;
-            $handle->file_overwrite=true;
-            $handle->file_safe_name = true;
-            $handle->jpeg_quality = 50;
-            $handle->process($c.'assets/unggah/'.$b.'/');
-            if ($handle->processed) {
-                return $handle->file_dst_name;
-            } 
-            else{
-                return false;
-            }
-      }
-  }
+  function upload($input_name, $folder) {
+    $file_name = $_FILES[$input_name]['name'];
+    $file_tmp = $_FILES[$input_name]['tmp_name'];
+    $upload_directory = 'assets/unggah/' . $folder . '/';
+    
+    // Buat folder jika belum ada
+    if (!is_dir($upload_directory)) {
+        mkdir($upload_directory, 0777, true);
+    }
+    
+    $upload_path = $upload_directory . basename($file_name);
+
+    if (move_uploaded_file($file_tmp, $upload_path)) {
+        return $file_name;
+    } else {
+        return false;
+    }
+}
