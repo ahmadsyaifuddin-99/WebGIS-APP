@@ -13,9 +13,10 @@
     $url = 'export';
     ?>
 
-    <div class="container">
-        <h1 class="mt-5">Laporan Pengisian Data Kecamatan</h1>
+    <div class="container-fluid">
+        <h4 class="mt-5">Laporan Pengisian Data Kecamatan</h4>
         <!-- <a href="<?=url($url)?>" class="btn btn-success"><i class="fa-solid fa-file-excel"></i> Export ke Excel</a><br><br> -->
+        <div class="table-responsive">
         <table class="table table-bordered mt-3">
             <thead>
                 <tr>
@@ -64,13 +65,15 @@
                             </tr>";
                     }
                 } else {
-                    echo "<tr><td colspan='5'>No data found</td></tr>";
+                    echo "<tr><td colspan='5'>Belum ada yg mengisi Data!</td></tr>";
                 }
 
                 $db->close();
                 ?>
             </tbody>
         </table>
+        </div>
+        
     </div>
 </body>
 </html>
