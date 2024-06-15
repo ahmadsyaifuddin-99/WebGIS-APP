@@ -75,6 +75,7 @@ elseif(isset($_GET['tambah']) OR isset($_GET['ubah'])){
   $lat="";
   $lng="";
   $tanggal=date('Y-m-d');
+  $marker="";
   if(isset($_GET['ubah']) AND isset($_GET['id'])){
   	$id=$_GET['id'];
   	$db->where('id_hotspot',$id);
@@ -87,6 +88,7 @@ elseif(isset($_GET['tambah']) OR isset($_GET['ubah'])){
 		$lat=$row->lat;
 		$lng=$row->lng;
 		$tanggal=$row->tanggal;
+		$marker=$row->marker;
 	}
   }
 ?>
@@ -146,9 +148,12 @@ elseif(isset($_GET['tambah']) OR isset($_GET['ubah'])){
     		<label>Marker</label>
     		<div class="row">
 	    		<div class="col-md-4">
-    				<?=input_file('marker','')?>
+                    <input type="file" name="marker">
     			</div>
     		</div>
+			<?php if ($marker != ""): ?>
+                <p>File saat ini: <a href="<?=assets('unggah/marker/'.$marker)?>" target="_BLANK"><?=$marker?></a></p>
+            <?php endif; ?>
     	</div>
     	<div class="form-group">
     		<button type="submit" name="simpan" class="btn btn-info"><i class="fa fa-save"></i> Simpan</button>
@@ -164,6 +169,8 @@ elseif(isset($_GET['tambah']) OR isset($_GET['ubah'])){
 <hr>
 <?=$session->pull("info")?>
 
+<div class="table-responsive">
+	
 <table class="table table-bordered">
 	<thead>
 		<tr>
@@ -206,5 +213,8 @@ elseif(isset($_GET['tambah']) OR isset($_GET['ubah'])){
 		?>
 	</tbody>
 </table>
+
+</div>
+
 <?=content_close()?>
 <?php } ?>

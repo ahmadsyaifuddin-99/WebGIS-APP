@@ -40,11 +40,25 @@
 	        // 	console.log(key);
 
 	        // }
+			// Menampilkan informasi dasar
 			out.push("Provinsi: "+f.properties['PROVINSI']);
 			out.push("Kecamatan: "+f.properties['KECAMATAN']);
+
+			// Menangkap dan menampilkan data PANGAN
+			var pangan = f.properties['PANGAN'];
+        	if (pangan) {
+            out.push("Pangan:");
+            for (var key in pangan) {
+                if (pangan.hasOwnProperty(key)) {
+                    out.push(key + ": " + pangan[key]);
+                }
+            }
+
+		    // Mengikat popup dengan informasi yang dihasilkan
 	        l.bindPopup(out.join("<br />"));
 	    }
 	}
+}
 
 	// legend
 

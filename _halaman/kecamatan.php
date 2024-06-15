@@ -50,6 +50,9 @@ if (isset($_POST['simpan'])) {
     if ($_POST['nm_kecamatan'] == '') {
         $validation[] = 'Nama Kecamatan Tidak Boleh Kosong';
     }
+    if ($_POST['jml_pangan'] == '') {
+        $validation[] = 'Jumlah Produk Pangan Tidak Boleh Kosong';
+    }
 
     if ($validation != null) {
         $setTemplate = false;
@@ -63,6 +66,7 @@ if (isset($_POST['simpan'])) {
     $data['kd_kecamatan'] = $_POST['kd_kecamatan'];
     $data['nm_kecamatan'] = $_POST['nm_kecamatan'];
     $data['warna_kecamatan'] = $_POST['warna_kecamatan'];
+    $data['jml_pangan'] = $_POST['jml_pangan'];
     $data['tgl_isi'] = $tgl_isi; // Menambahkan tanggal dan waktu saat ini
 
     if ($_POST['id_kecamatan'] == "") {
@@ -132,6 +136,7 @@ elseif (isset($_GET['tambah']) OR isset($_GET['ubah'])) {
     $kd_kecamatan = "";
     $nm_kecamatan = "";
     $geojson_kecamatan = "";
+    $jml_pangan = "";
     $warna_kecamatan = "";
     if (isset($_GET['ubah']) AND isset($_GET['id'])) {
         $id = $_GET['id'];
@@ -142,6 +147,7 @@ elseif (isset($_GET['tambah']) OR isset($_GET['ubah'])) {
             $kd_kecamatan = $row->kd_kecamatan;
             $nm_kecamatan = $row->nm_kecamatan;
             $geojson_kecamatan = $row->geojson_kecamatan;
+            $jml_pangan = $row->jml_pangan;
             $warna_kecamatan = $row->warna_kecamatan;
         }
     }
@@ -189,6 +195,14 @@ elseif (isset($_GET['tambah']) OR isset($_GET['ubah'])) {
             <?php endif; ?>
         </div>
         <div class="form-group">
+            <label>Jumlah Produk Pangan (dalam ton) | contoh : Padi 27000/ton</label>
+            <div class="row">
+                <div class="col-md-4">
+                    <?=input_text('jml_pangan', $jml_pangan)?>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
             <label>Warna</label> 
             <div class="row">
                 <div class="col-md-3">
@@ -211,6 +225,8 @@ elseif (isset($_GET['tambah']) OR isset($_GET['ubah'])) {
 <hr>
 <?=$session->pull("info")?>
 
+<div class="table-responsive">
+
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -218,6 +234,7 @@ elseif (isset($_GET['tambah']) OR isset($_GET['ubah'])) {
             <th>Kode</th>
             <th>Nama Kecamatan</th>
             <th>GeoJSON</th>
+            <th>Produk Pangan Unggul (dalam Ton)</th>
             <th>Warna</th>
             <th>Aksi</th>
         </tr>
@@ -233,6 +250,7 @@ elseif (isset($_GET['tambah']) OR isset($_GET['ubah'])) {
                         <td><?=$row->kd_kecamatan?></td>
                         <td><?=$row->nm_kecamatan?></td>
                         <td><a href="<?=assets('unggah/geojson/'.$row->geojson_kecamatan)?>" target="_BLANK"><?=$row->geojson_kecamatan?></a></td>
+                        <td><?=$row->jml_pangan?></td>
                         <td style="background: <?=$row->warna_kecamatan?>"></td>
                         <td>
                             <a href="<?=url($url.'&ubah&id='.$row->id_kecamatan)?>" class="btn btn-info"><i class="fa fa-edit"></i> Ubah</a>
@@ -245,5 +263,6 @@ elseif (isset($_GET['tambah']) OR isset($_GET['ubah'])) {
         ?>
     </tbody>
 </table>
+</div>
 <?=content_close()?>
 <?php } ?>
