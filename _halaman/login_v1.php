@@ -31,14 +31,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Form Login</title>
+	<title>Login</title>
 	<?php include '_layouts/head.php'?>
 	<link rel="stylesheet" href="<?=templates()?>plugins/iCheck/square/blue.css">
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="#"><b>Login</b>WEBGIS</a>
+    <a href="#"><b>Login</b>WEBGIS Pangan Unggulan Batola</a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
