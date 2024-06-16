@@ -50,8 +50,11 @@ if (isset($_POST['simpan'])) {
     if ($_POST['nm_kecamatan'] == '') {
         $validation[] = 'Nama Kecamatan Tidak Boleh Kosong';
     }
-    if ($_POST['jml_pangan'] == '') {
-        $validation[] = 'Jumlah Produk Pangan Tidak Boleh Kosong';
+    if (($_POST['jml_pangan'] == '')) {
+        $validation[] = 'Jumlah Produk Pangan Tidak Boleh Kosong!';
+    }
+    if (!is_numeric($_POST['jml_pangan'])) {
+        $validation[] = 'Inputan Produk Pangan Harus Angka!';
     }
 
     if ($validation != null) {
@@ -75,7 +78,7 @@ if (isset($_POST['simpan'])) {
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
             <h4><i class="icon fa fa-check"></i> Sukses!</h4> Data Sukses Ditambah
           </div>';
-        
+
         // Menambahkan data ke tabel data_entries
         if ($exec) {
             $id_pengguna = $session->get('id_pengguna');
@@ -86,7 +89,6 @@ if (isset($_POST['simpan'])) {
             ];
             $db->insert('data_entries', $entryData);
         }
-        
     } else {
         $db->where('id_kecamatan', $_POST['id_kecamatan']);
         $exec = $db->update("m_kecamatan", $data);
@@ -129,16 +131,14 @@ if (isset($_GET['hapus'])) {
               </div>');
     }
     redirect(url($url));
-}
-
-elseif (isset($_GET['tambah']) OR isset($_GET['ubah'])) {
+} elseif (isset($_GET['tambah']) or isset($_GET['ubah'])) {
     $id_kecamatan = "";
     $kd_kecamatan = "";
     $nm_kecamatan = "";
     $geojson_kecamatan = "";
     $jml_pangan = "";
     $warna_kecamatan = "";
-    if (isset($_GET['ubah']) AND isset($_GET['id'])) {
+    if (isset($_GET['ubah']) and isset($_GET['id'])) {
         $id = $_GET['id'];
         $db->where('id_kecamatan', $id);
         $row = $db->ObjectBuilder()->getOne('m_kecamatan');
@@ -156,22 +156,22 @@ elseif (isset($_GET['tambah']) OR isset($_GET['ubah'])) {
         extract($session->pull('error_value'));
     }
 ?>
-<?=content_open('Form Kecamatan')?>
+    <?= content_open('Form Kecamatan') ?>
     <form method="post" enctype="multipart/form-data">
         <?php
-            // menampilkan error validasi
-            if ($session->get('error_validation')) {
-                foreach ($session->pull('error_validation') as $key => $value) {
-                    echo '<div class="alert alert-danger">'.$value.'</div>';
-                }
+        // menampilkan error validasi
+        if ($session->get('error_validation')) {
+            foreach ($session->pull('error_validation') as $key => $value) {
+                echo '<div class="alert alert-danger">' . $value . '</div>';
             }
+        }
         ?>
-        <?=input_hidden('id_kecamatan', $id_kecamatan)?>
+        <?= input_hidden('id_kecamatan', $id_kecamatan) ?>
         <div class="form-group">
             <label>Kode Kecamatan</label>
             <div class="row">
                 <div class="col-md-4">
-                    <?=input_text('kd_kecamatan', $kd_kecamatan)?>
+                    <?= input_text('kd_kecamatan', $kd_kecamatan) ?>
                 </div>
             </div>
         </div>
@@ -179,7 +179,7 @@ elseif (isset($_GET['tambah']) OR isset($_GET['ubah'])) {
             <label>Nama Kecamatan</label>
             <div class="row">
                 <div class="col-md-6">
-                    <?=input_text('nm_kecamatan', $nm_kecamatan)?>
+                    <?= input_text('nm_kecamatan', $nm_kecamatan) ?>
                 </div>
             </div>
         </div>
@@ -190,79 +190,78 @@ elseif (isset($_GET['tambah']) OR isset($_GET['ubah'])) {
                     <input type="file" name="geojson_kecamatan">
                 </div>
             </div>
-            <?php if ($geojson_kecamatan != ""): ?>
-                <p>File saat ini: <a href="<?=assets('unggah/geojson/'.$geojson_kecamatan)?>" target="_BLANK"><?=$geojson_kecamatan?></a></p>
+            <?php if ($geojson_kecamatan != "") : ?>
+                <p>File saat ini: <a href="<?= assets('unggah/geojson/' . $geojson_kecamatan) ?>" target="_BLANK"><?= $geojson_kecamatan ?></a></p>
             <?php endif; ?>
         </div>
         <div class="form-group">
-            <label>Jumlah Produk Pangan (dalam ton) | contoh : Padi 27000/ton</label>
+            <label>Jumlah Produk Pangan | contoh : 27000</label>
             <div class="row">
                 <div class="col-md-4">
-                    <?=input_text('jml_pangan', $jml_pangan)?>
+                    <?= input_text('jml_pangan', $jml_pangan) ?>
                 </div>
             </div>
         </div>
         <div class="form-group">
-            <label>Warna</label> 
+            <label>Warna</label>
             <div class="row">
                 <div class="col-md-3">
-                    <?=input_color('warna_kecamatan', $warna_kecamatan)?>
+                    <?= input_color('warna_kecamatan', $warna_kecamatan) ?>
                 </div>
             </div>
         </div>
         <div class="form-group">
             <input type="hidden" name="tgl_isi" value="<?php echo date('l/d/M/Y-H:i:s:a'); ?>">
             <button type="submit" name="simpan" class="btn btn-info"><i class="fa fa-save"></i> Simpan</button>
-            <a href="<?=url($url)?>" class="btn btn-danger"><i class="fa fa-reply"></i> Kembali</a>
+            <a href="<?= url($url) ?>" class="btn btn-danger"><i class="fa fa-reply"></i> Kembali</a>
         </div>
     </form>
-<?=content_close()?>
+    <?= content_close() ?>
 
 <?php } else { ?>
-<?=content_open('Data Kecamatan')?>
+    <?= content_open('Data Kecamatan') ?>
 
-<a href="<?=url($url.'&tambah')?>" class="btn btn-success"><i class="fa fa-plus"></i> Tambah</a>
-<hr>
-<?=$session->pull("info")?>
+    <a href="<?= url($url . '&tambah') ?>" class="btn btn-success"><i class="fa fa-plus"></i> Tambah</a>
+    <hr>
+    <?= $session->pull("info") ?>
 
-<div class="table-responsive">
-
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>No</th>
-            <th>Kode</th>
-            <th>Nama Kecamatan</th>
-            <th>GeoJSON</th>
-            <th>Produk Pangan Unggul (dalam Ton)</th>
-            <th>Warna</th>
-            <th>Aksi</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-            $no = 1;
-            $getdata = $db->ObjectBuilder()->get('m_kecamatan');
-            foreach ($getdata as $row) {
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Kode</th>
+                    <th>Nama Kecamatan</th>
+                    <th>GeoJSON</th>
+                    <th>Produk Pangan Unggul (dalam Ton)</th>
+                    <th>Warna</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $no = 1;
+                $getdata = $db->ObjectBuilder()->get('m_kecamatan');
+                foreach ($getdata as $row) {
                 ?>
                     <tr>
-                        <td><?=$no?></td>
-                        <td><?=$row->kd_kecamatan?></td>
-                        <td><?=$row->nm_kecamatan?></td>
-                        <td><a href="<?=assets('unggah/geojson/'.$row->geojson_kecamatan)?>" target="_BLANK"><?=$row->geojson_kecamatan?></a></td>
-                        <td><?=$row->jml_pangan?></td>
-                        <td style="background: <?=$row->warna_kecamatan?>"></td>
+                        <td><?= $no ?></td>
+                        <td><?= $row->kd_kecamatan ?></td>
+                        <td><?= $row->nm_kecamatan ?></td>
+                        <td><a href="<?= assets('unggah/geojson/' . $row->geojson_kecamatan) ?>" target="_BLANK"><?= $row->geojson_kecamatan ?></a></td>
+                        <td><?= $row->jml_pangan ?></td>
+                        <td style="background: <?= $row->warna_kecamatan ?>"></td>
                         <td>
-                            <a href="<?=url($url.'&ubah&id='.$row->id_kecamatan)?>" class="btn btn-info"><i class="fa fa-edit"></i> Ubah</a>
-                            <a href="<?=url($url.'&hapus&id='.$row->id_kecamatan)?>" class="btn btn-danger" onclick="return confirm('Hapus data?')"><i class="fa fa-trash"></i> Hapus</a>
+                            <a href="<?= url($url . '&ubah&id=' . $row->id_kecamatan) ?>" class="btn btn-info"><i class="fa fa-edit"></i> Ubah</a>
+                            <a href="<?= url($url . '&hapus&id=' . $row->id_kecamatan) ?>" class="btn btn-danger" onclick="return confirm('Hapus data?')"><i class="fa fa-trash"></i> Hapus</a>
                         </td>
                     </tr>
                 <?php
-                $no++;
-            }
-        ?>
-    </tbody>
-</table>
-</div>
-<?=content_close()?>
+                    $no++;
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
+    <?= content_close() ?>
 <?php } ?>
