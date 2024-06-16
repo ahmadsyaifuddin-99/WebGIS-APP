@@ -1,47 +1,47 @@
+<?php
+$title = "Halaman Laporan";
+$judul = $title;
+$url = 'laporan';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan Pengisian Data Kecamatan</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
+
 <body>
-    <?php
-    $title = "Laporan";
-    $judul = $title;
-    $url = 'laporan';
-    ?>
-
     <div class="container-fluid">
-        <h4 class="mt-5">Laporan Pengisian Data Kecamatan di Kab. Barito Kuala</h4>
-        <!-- <a href="<?=url($url)?>" class="btn btn-success"><i class="fa-solid fa-file-excel"></i> Export ke Excel</a><br><br> -->
+
+        <h4 class="mt-5">Laporan Pengisian Data Pangan Unggulan Kecamatan di Kab. Barito Kuala</h4>
         <div class="table-responsive">
-        <table class="table table-hover table-bordered mt-3">
-            <thead>
-                <tr>
-                    <th>Nama Pengguna yg Mengisi</th>
-                    <th>Kode Kecamatan</th>
-                    <th>Nama Kecamatan</th>
-                    <th>File GeoJSON</th>
-                    <th>Jumlah Pangan (dalam ton)</th>
-                    <th>Tanggal Pengisian</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                
-                // Database connection
-                $db = new mysqli('localhost', 'root', '', 'webgis_pangan');
+            <table class="table table-hover table-bordered mt-3">
+                <thead>
+                    <tr class="info">
+                        <th>Nama Pengguna yg Mengisi</th>
+                        <th>Kode Kecamatan</th>
+                        <th>Nama Kecamatan</th>
+                        <th>File GeoJSON</th>
+                        <th>Jumlah Pangan (dalam ton)</th>
+                        <th>Tanggal Pengisian</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
 
-                if ($db->connect_error) {
-                    die("Connection failed: " . $db->connect_error);
-                }
-                
-                $totalTon = 0; // Initialize total ton variable
+                    // Database connection
+                    $db = mysqli_connect('localhost', 'root', '', 'webgis_pangan');
 
-                // SQL query to fetch data
-                $sql = "SELECT 
+                    if ($db->connect_error) {
+                        die("Connection failed: " . $db->connect_error);
+                    }
+
+                    $totalTon = 0; // Initialize total ton variable
+
+                    // SQL query to fetch data
+                    $sql = "SELECT 
                             p.nm_pengguna,
                             k.nm_kecamatan,
                             k.kd_kecamatan,
@@ -55,20 +55,20 @@
                         JOIN 
                             m_kecamatan k ON e.id_kecamatan = k.id_kecamatan";
 
-                $result = $db->query($sql);
+                    $result = $db->query($sql);
 
-                if ($result->num_rows > 0) {
-                    // Output data of each row
-                    while ($row = $result->fetch_assoc()) {
-                        $jmlPanganText = $row['jml_pangan'];
-                        
-                        // Extract the numeric value from the string
-                        preg_match('/(\d+)/', $jmlPanganText, $matches);
-                        $jmlPangan = isset($matches[1]) ? floatval($matches[1]) : 0;
-                        
-                        $totalTon += $jmlPangan; // Add jml_pangan to total ton
-                        
-                        echo "<tr>
+                    if ($result->num_rows > 0) {
+                        // Output data of each row
+                        while ($row = $result->fetch_assoc()) {
+                            $jmlPanganText = $row['jml_pangan'];
+
+                            // Extract the numeric value from the string
+                            preg_match('/(\d+)/', $jmlPanganText, $matches);
+                            $jmlPangan = isset($matches[1]) ? floatval($matches[1]) : 0;
+
+                            $totalTon += $jmlPangan; // Add jml_pangan to total ton
+
+                            echo "<tr>
                                 <td>{$row['nm_pengguna']}</td>
                                 <td>{$row['kd_kecamatan']}</td>
                                 <td>{$row['nm_kecamatan']}</td>
@@ -76,25 +76,93 @@
                                 <td>{$jmlPanganText}</td>
                                 <td>{$row['tgl_isi']}</td>
                             </tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='6'><code>Belum ada yg mengisi Data!</code></td></tr>";
                     }
-                } else {
-                    echo "<tr><td colspan='6'>Belum ada yg mengisi Data!</td></tr>";
-                }
 
-                $db->close();
-                ?>
-                <tr class="bg-danger">
-                    <td colspan="4" align="center">
-                        <b>Total Ton Pangan Unggulan di Kab. Batola</b>
-                    </td>
-                    <td colspan="1" align="center">
-                        <b>Total Pangan Unggulan: <?php echo $totalTon ?>/ton </b>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                    $db->close();
+                    ?>
+                    <tr class="bg-danger">
+                        <td colspan="4" align="center">
+                            <b>Total Ton Pangan Unggulan di Kab. Batola</b>
+                        </td>
+                        <td colspan="1" align="center">
+                            <b>Padi: <?php echo $totalTon ?>/ton </b>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        
+
+        <br>
+        <h4>Laporan Pengisian Data Hotspot Lokasi Kecamatan di Kab. Barito Kuala</h4>
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered mt-3">
+                <thead>
+                    <tr class="info">
+                        <th>Nama Pengguna yg Mengisi</th>
+                        <th>Lokasi</th>
+                        <th>Nama Kecamatan</th>
+                        <th>Keterangan</th>
+                        <th>Lat</th>
+                        <th>Lng</th>
+                        <th>Tanggal Pengisian</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+
+                    // Database connection
+                    $db = mysqli_connect('localhost', 'root', '', 'webgis_pangan');
+
+                    if ($db->connect_error) {
+                        die("Connection failed: " . $db->connect_error);
+                    }
+
+                    // SQL query to fetch hotspot data
+                    $sql_hotspot = "SELECT 
+                                    p.nm_pengguna,
+                                    h.lokasi,
+                                    k.nm_kecamatan,
+                                    h.keterangan,
+                                    h.lat,
+                                    h.lng,
+                                    h.tanggal
+                                FROM 
+                                    t_hotspot h
+                                JOIN 
+                                    pengguna p ON h.id_pengguna = p.id_pengguna
+                                JOIN 
+                                    m_kecamatan k ON h.id_kecamatan = k.id_kecamatan";
+
+                    $result_hotspot = $db->query($sql_hotspot);
+
+                    if ($result_hotspot->num_rows > 0) {
+                        // Output data of each row
+                        while ($row = $result_hotspot->fetch_assoc()) {
+                            echo "<tr>
+                                <td>{$row['nm_pengguna']}</td>
+                                <td>{$row['lokasi']}</td>
+                                <td>{$row['nm_kecamatan']}</td>
+                                <td>{$row['keterangan']}</td>
+                                <td>{$row['lat']}</td>
+                                <td>{$row['lng']}</td>
+                                <td>{$row['tanggal']}</td>
+                            </tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='7'><code>Belum ada yg mengisi Data!</code></td></tr>";
+                    }
+
+                    $db->close();
+                    ?>
+                </tbody>
+            </table>
+        </div>
+
     </div>
+
 </body>
+
 </html>
