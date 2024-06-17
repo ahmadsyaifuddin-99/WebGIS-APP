@@ -4,6 +4,9 @@
     <title><?= isset($title) ? $title : 'WebGis PHP' ?></title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <link rel="shortcut icon" href="./assets/icons/favicon.ico" type="image/x-icon">
+
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet" href="<?= templates() ?>bower_components/bootstrap/dist/css/bootstrap.min.css">
     <!-- Font Awesome -->
