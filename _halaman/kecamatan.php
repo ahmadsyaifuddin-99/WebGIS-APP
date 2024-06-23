@@ -10,7 +10,7 @@ if (!in_array($session->get('level'), ['Super Admin', 'Administrator'])) {
 
 if (isset($_POST['simpan'])) {
     $file = upload('geojson_kecamatan', 'geojson');
-    $tgl_isi = date('l/d/M/Y-H:i:s:a');
+    $tgl_isi =  date('l/d/M/Y-H:i:s:a');
     if ($file !== false) {
         $data['geojson_kecamatan'] = $file;
         if ($_POST['id_kecamatan'] != '') {
@@ -156,9 +156,9 @@ if (isset($_GET['hapus'])) {
         extract($session->pull('error_value'));
     }
 ?>
-    <?= content_open('Form Kecamatan') ?>
-    <form method="post" enctype="multipart/form-data">
-        <?php
+<?= content_open('Form Kecamatan') ?>
+<form method="post" enctype="multipart/form-data">
+    <?php
         // menampilkan error validasi
         if ($session->get('error_validation')) {
             foreach ($session->pull('error_validation') as $key => $value) {
@@ -166,102 +166,106 @@ if (isset($_GET['hapus'])) {
             }
         }
         ?>
-        <?= input_hidden('id_kecamatan', $id_kecamatan) ?>
-        <div class="form-group">
-            <label>Kode Kecamatan</label>
-            <div class="row">
-                <div class="col-md-4">
-                    <?= input_text('kd_kecamatan', $kd_kecamatan) ?>
-                </div>
+    <?= input_hidden('id_kecamatan', $id_kecamatan) ?>
+    <div class="form-group">
+        <label>Kode Kecamatan</label>
+        <div class="row">
+            <div class="col-md-4">
+                <?= input_text('kd_kecamatan', $kd_kecamatan) ?>
             </div>
         </div>
-        <div class="form-group">
-            <label>Nama Kecamatan</label>
-            <div class="row">
-                <div class="col-md-6">
-                    <?= input_text('nm_kecamatan', $nm_kecamatan) ?>
-                </div>
+    </div>
+    <div class="form-group">
+        <label>Nama Kecamatan</label>
+        <div class="row">
+            <div class="col-md-6">
+                <?= input_text('nm_kecamatan', $nm_kecamatan) ?>
             </div>
         </div>
-        <div class="form-group">
-            <label>GeoJSON</label>
-            <div class="row">
-                <div class="col-md-4">
-                    <input type="file" name="geojson_kecamatan">
-                </div>
-            </div>
-            <?php if ($geojson_kecamatan != "") : ?>
-                <p>File saat ini: <a href="<?= assets('unggah/geojson/' . $geojson_kecamatan) ?>" target="_BLANK"><?= $geojson_kecamatan ?></a></p>
-            <?php endif; ?>
-        </div>
-        <div class="form-group">
-            <label>Jumlah Produk Pangan | contoh : 27000</label>
-            <div class="row">
-                <div class="col-md-4">
-                    <?= input_text('jml_pangan', $jml_pangan) ?>
-                </div>
+    </div>
+    <div class="form-group">
+        <label>GeoJSON</label>
+        <div class="row">
+            <div class="col-md-4">
+                <input class="form-control" type="file" name="geojson_kecamatan">
             </div>
         </div>
-        <div class="form-group">
-            <label>Warna</label>
-            <div class="row">
-                <div class="col-md-3">
-                    <?= input_color('warna_kecamatan', $warna_kecamatan) ?>
-                </div>
+        <?php if ($geojson_kecamatan != "") : ?>
+        <p>File saat ini: <a href="<?= assets('unggah/geojson/' . $geojson_kecamatan) ?>"
+                target="_BLANK"><?= $geojson_kecamatan ?></a></p>
+        <?php endif; ?>
+    </div>
+    <div class="form-group">
+        <label>Jumlah Produk Pangan | contoh : 27000</label>
+        <div class="row">
+            <div class="col-md-4">
+                <?= input_text('jml_pangan', $jml_pangan) ?>
             </div>
         </div>
-        <div class="form-group">
-            <input type="hidden" name="tgl_isi" value="<?php echo date('l/d/M/Y-H:i:s:a'); ?>">
-            <button type="submit" name="simpan" class="btn btn-info"><i class="fa fa-save"></i> Simpan</button>
-            <a href="<?= url($url) ?>" class="btn btn-danger"><i class="fa fa-reply"></i> Kembali</a>
+    </div>
+    <div class="form-group">
+        <label>Warna</label>
+        <div class="row">
+            <div class="col-md-3">
+                <?= input_color('warna_kecamatan', $warna_kecamatan) ?>
+            </div>
         </div>
-    </form>
-    <?= content_close() ?>
+    </div>
+    <div class="form-group">
+        <input type="hidden" name="tgl_isi" value="<?php echo date('l/d/M/Y-H:i:s:a'); ?>">
+        <button type="submit" name="simpan" class="btn btn-info"><i class="fa fa-save"></i> Simpan</button>
+        <a href="<?= url($url) ?>" class="btn btn-danger"><i class="fa fa-reply"></i> Kembali</a>
+    </div>
+</form>
+<?= content_close() ?>
 
 <?php } else { ?>
-    <?= content_open('Data Kecamatan') ?>
+<?= content_open('Data Kecamatan') ?>
 
-    <a href="<?= url($url . '&tambah') ?>" class="btn btn-success"><i class="fa fa-plus"></i> Tambah</a>
-    <hr>
-    <?= $session->pull("info") ?>
+<a href="<?= url($url . '&tambah') ?>" class="btn btn-success"><i class="fa fa-plus"></i> Tambah</a>
+<hr>
+<?= $session->pull("info") ?>
 
-    <div class="table-responsive">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Kode</th>
-                    <th>Nama Kecamatan</th>
-                    <th>GeoJSON</th>
-                    <th>Produk Pangan Unggul (dalam Ton)</th>
-                    <th>Warna</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Kode</th>
+                <th>Nama Kecamatan</th>
+                <th>GeoJSON</th>
+                <th>Produk Pangan Unggul (dalam Ton)</th>
+                <th>Warna</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
                 $no = 1;
                 $getdata = $db->ObjectBuilder()->get('m_kecamatan');
                 foreach ($getdata as $row) {
                 ?>
-                    <tr>
-                        <td><?= $no ?></td>
-                        <td><?= $row->kd_kecamatan ?></td>
-                        <td><?= $row->nm_kecamatan ?></td>
-                        <td><a href="<?= assets('unggah/geojson/' . $row->geojson_kecamatan) ?>" target="_BLANK"><?= $row->geojson_kecamatan ?></a></td>
-                        <td><?= $row->jml_pangan ?></td>
-                        <td style="background: <?= $row->warna_kecamatan ?>"></td>
-                        <td>
-                            <a href="<?= url($url . '&ubah&id=' . $row->id_kecamatan) ?>" class="btn btn-info"><i class="fa fa-edit"></i> Ubah</a>
-                            <a href="<?= url($url . '&hapus&id=' . $row->id_kecamatan) ?>" class="btn btn-danger" onclick="return confirm('Hapus data?')"><i class="fa fa-trash"></i> Hapus</a>
-                        </td>
-                    </tr>
-                <?php
+            <tr>
+                <td><?= $no ?></td>
+                <td><?= $row->kd_kecamatan ?></td>
+                <td><?= $row->nm_kecamatan ?></td>
+                <td><a href="<?= assets('unggah/geojson/' . $row->geojson_kecamatan) ?>"
+                        target="_BLANK"><?= $row->geojson_kecamatan ?></a></td>
+                <td><?= $row->jml_pangan ?></td>
+                <td style="background: <?= $row->warna_kecamatan ?>"></td>
+                <td>
+                    <a href="<?= url($url . '&ubah&id=' . $row->id_kecamatan) ?>" class="btn btn-info"><i
+                            class="fa fa-edit"></i> Ubah</a>
+                    <a href="<?= url($url . '&hapus&id=' . $row->id_kecamatan) ?>" class="btn btn-danger"
+                        onclick="return confirm('Hapus data?')"><i class="fa fa-trash"></i> Hapus</a>
+                </td>
+            </tr>
+            <?php
                     $no++;
                 }
                 ?>
-            </tbody>
-        </table>
-    </div>
-    <?= content_close() ?>
+        </tbody>
+    </table>
+</div>
+<?= content_close() ?>
 <?php } ?>
