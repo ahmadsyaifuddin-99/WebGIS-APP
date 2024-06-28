@@ -18,7 +18,7 @@ ob_end_clean();
 
 if ($setTemplate == true) {
   if ($session->get("logged") !== true) {
-    redirect(url('login'));
+    redirect(url('login2'));
   }
 ?>
   <!DOCTYPE html>

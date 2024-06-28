@@ -101,11 +101,11 @@ INSERT INTO `pengguna` (`id_pengguna`, `nm_pengguna`, `kt_sandi`, `level`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `t_hotspot`
+-- Table structure for table `t_pangan`
 --
 
-CREATE TABLE `t_hotspot` (
-  `id_hotspot` int NOT NULL,
+CREATE TABLE `t_pangan` (
+  `id_Pangan` int NOT NULL,
   `id_kecamatan` int NOT NULL,
   `lokasi` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `keterangan` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
@@ -117,10 +117,10 @@ CREATE TABLE `t_hotspot` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `t_hotspot`
+-- Dumping data for table `t_pangan`
 --
 
-INSERT INTO `t_hotspot` (`id_hotspot`, `id_kecamatan`, `lokasi`, `keterangan`, `lat`, `lng`, `tanggal`, `marker`, `id_pengguna`) VALUES
+INSERT INTO `t_pangan` (`id_Pangan`, `id_kecamatan`, `lokasi`, `keterangan`, `lat`, `lng`, `tanggal`, `marker`, `id_pengguna`) VALUES
 (1, 1, 'Handil Ketapi', 'Area Persawahan Padi', -3.181765, 114.535378, '2024-06-17 22:23:00', 'marker.png', 6),
 (2, 2, 'Beringin', 'Area Persawahan Padi', -3.213542, 114.590668, '2024-06-17 22:33:00', 'marker-purple.png', 6);
 
@@ -149,10 +149,10 @@ ALTER TABLE `pengguna`
   ADD PRIMARY KEY (`id_pengguna`);
 
 --
--- Indexes for table `t_hotspot`
+-- Indexes for table `t_pangan`
 --
-ALTER TABLE `t_hotspot`
-  ADD PRIMARY KEY (`id_hotspot`);
+ALTER TABLE `t_pangan`
+  ADD PRIMARY KEY (`id_Pangan`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -177,10 +177,10 @@ ALTER TABLE `pengguna`
   MODIFY `id_pengguna` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `t_hotspot`
+-- AUTO_INCREMENT for table `t_pangan`
 --
-ALTER TABLE `t_hotspot`
-  MODIFY `id_hotspot` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `t_pangan`
+  MODIFY `id_Pangan` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

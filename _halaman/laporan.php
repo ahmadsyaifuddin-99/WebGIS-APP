@@ -100,7 +100,7 @@ $url = 'laporan';
 
         <br>
 
-        <h4>Laporan Pengisian Data Hotspot Lokasi Kecamatan di Kab. Barito Kuala</h4>
+        <h4>Laporan Pengisian Titik-titik Data Pangan di Kab. Barito Kuala</h4>
         <div class="table-responsive">
             <table class="table table-hover table-bordered mt-3">
                 <thead>
@@ -124,8 +124,8 @@ $url = 'laporan';
                         die("Connection failed: " . $db->connect_error);
                     }
 
-                    // SQL query to fetch hotspot data
-                    $sql_hotspot = "SELECT 
+                    // SQL query to fetch Pangan data
+                    $sql_Pangan = "SELECT 
                                     p.nm_pengguna,
                                     h.lokasi,
                                     k.nm_kecamatan,
@@ -134,17 +134,17 @@ $url = 'laporan';
                                     h.lng,
                                     h.tanggal
                                 FROM 
-                                    t_hotspot h
+                                    t_pangan h
                                 JOIN 
                                     pengguna p ON h.id_pengguna = p.id_pengguna
                                 JOIN 
                                     m_kecamatan k ON h.id_kecamatan = k.id_kecamatan";
 
-                    $result_hotspot = $db->query($sql_hotspot);
+                    $result_pangan = $db->query($sql_Pangan);
 
-                    if ($result_hotspot->num_rows > 0) {
+                    if ($result_pangan->num_rows > 0) {
                         // Output data of each row
-                        while ($row = $result_hotspot->fetch_assoc()) {
+                        while ($row = $result_pangan->fetch_assoc()) {
                             echo "<tr>
                                 <td>{$row['nm_pengguna']}</td>
                                 <td>{$row['lokasi']}</td>

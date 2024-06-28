@@ -14,4 +14,5 @@ $setSession['prefix'] = 'webgis_pangan';
 
 //URI
 $setUri['base'] = 'http://127.0.0.1/webGIS-APP/My-Project-SIG/WebGIS-pangan/';
+// $setUri['base'] = 'https://1f65-114-10-143-2.ngrok-free.app/WebGIS-APP/My-Project-SIG/WebGIS-pangan/';
 $setUri['assets'] = 'assets/';

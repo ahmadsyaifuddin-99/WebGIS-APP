@@ -1,15 +1,15 @@
 <?php
-  $title="Titik-titik Pangan Unggulan di Kab. Batola - Point Marker";
-  $judul=$title;
-  $url='leaflet-pointmarker';
-  $fileJs='leaflet-pointmarkerJs';
- ?>
+$title = "Titik-titik Pangan Unggulan di Kab. Batola - Point Marker";
+$judul = $title;
+$url = 'leaflet-pointmarker';
+$fileJs = 'leaflet-pointmarkerJs';
+?>
 <style type="text/css">
-.skin-blue .user-panel>.info,
-.skin-blue .user-panel>.info>a {
+  .skin-blue .user-panel>.info,
+  .skin-blue .user-panel>.info>a {
     color: #fff !important;
-}
+  }
 </style>
-<?=content_open($title)?>
+<?= content_open($title) ?>
 <div id="mapid"></div>
-<?=content_close()?>
+<?= content_close() ?>
