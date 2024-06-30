@@ -96,7 +96,7 @@
                 <span class="info-box-icon bg-green"><i class="fa-solid fa-wheat-awn"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Total Pangan 🌾</span>
-                    <span class="info-box-number"><?= $total_tonnage ?> /ton</span>
+                    <span class="info-box-number"><?= $total_tonnage ?> ton</span>
                 </div>
             </div>
         </div>
@@ -146,7 +146,7 @@
         data: {
             labels: labels,
             datasets: [{
-                label: 'Jumlah Produksi Pangan (Padi 🌾) /ton',
+                label: 'Jumlah Produksi Pangan (Padi 🌾) ',
                 data: data,
                 backgroundColor: 'LightSeaGreen',
                 borderColor: 'rgba(75, 192, 192, 1)',

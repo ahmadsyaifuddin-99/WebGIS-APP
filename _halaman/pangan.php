@@ -136,7 +136,8 @@ if (isset($_GET['hapus'])) {
             <label>Tanggal</label>
             <div class="row">
                 <div class="col-md-4">
-                    <input class="form-control" type="datetime-local" name="tanggal">
+                    <input class="form-control" type="datetime-local" value="<?= $tanggal ?>" name="tanggal">
+
                 </div>
             </div>
         </div>

@@ -10,8 +10,6 @@ $url = 'laporan';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
 </head>
 
 <body>
@@ -33,7 +31,6 @@ $url = 'laporan';
                 </thead>
                 <tbody>
                     <?php
-
                     // Database connection
                     $db = mysqli_connect('localhost', 'root', '', 'webgis_pangan');
 
@@ -76,7 +73,7 @@ $url = 'laporan';
                                 <td>{$row['kd_kecamatan']}</td>
                                 <td>{$row['nm_kecamatan']}</td>
                                 <td>{$row['geojson_kecamatan']}</td>
-                                <td>{$jmlPanganText} /ton</td>
+                                <td>{$jmlPanganText} ton</td>
                                 <td>{$row['tgl_isi']}</td>
                             </tr>";
                         }
@@ -87,14 +84,16 @@ $url = 'laporan';
                     $db->close();
                     ?>
                 </tbody>
-                <tr class="danger">
-                    <td colspan="4" align="center">
-                        <b>Total Pangan Unggulan di Kab. Batola</b>
-                    </td>
-                    <td colspan="1" align="left">
-                        <b>Padi: <?php echo $totalTon ?> /ton </b>
-                    </td>
-                </tr>
+                <tfoot>
+                    <tr class="danger">
+                        <td colspan="4">
+                            <b>Total Pangan Unggulan di Kab. Batola</b>
+                        </td>
+                        <td colspan="1">
+                            <b>Padi: <?php echo $totalTon ?> ton </b>
+                        </td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
 
@@ -116,7 +115,6 @@ $url = 'laporan';
                 </thead>
                 <tbody>
                     <?php
-
                     // Database connection
                     $db = mysqli_connect('localhost', 'root', '', 'webgis_pangan');
 
@@ -166,9 +164,6 @@ $url = 'laporan';
         </div>
 
     </div>
-
-
-
 
 </body>
 
