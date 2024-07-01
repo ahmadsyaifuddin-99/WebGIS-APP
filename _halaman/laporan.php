@@ -90,7 +90,7 @@ $url = 'laporan';
                             <b>Total Pangan Unggulan di Kab. Batola</b>
                         </td>
                         <td colspan="1">
-                            <b>Padi: <?php echo $totalTon ?> ton </b>
+                            <b><?php echo $totalTon ?> ton </b>
                         </td>
                     </tr>
                 </tfoot>

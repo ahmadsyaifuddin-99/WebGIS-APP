@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 29, 2024 at 05:02 AM
+-- Generation Time: Jul 01, 2024 at 05:40 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -77,23 +77,23 @@ CREATE TABLE `m_kecamatan` (
 --
 
 INSERT INTO `m_kecamatan` (`id_kecamatan`, `kd_kecamatan`, `nm_kecamatan`, `geojson_kecamatan`, `jml_pangan`, `warna_kecamatan`, `tgl_isi`) VALUES
-(1, '63.04.04', 'Anjir Muara', 'anjir_muara.geojson', '27832', '#ff0000', 'Sunday/16/Jun/2024-15:23:10:pm'),
-(2, '63.04.05', 'Alalak', 'alalak.geojson', '12918', '#00b344', 'Sunday/16/Jun/2024-15:23:19:pm'),
-(3, '63.04.03', 'Anjir Pasar', 'anjir_pasar.geojson', '32762', '#ccaa00', 'Sunday/16/Jun/2024-15:23:28:pm'),
-(4, '63.04.09', 'Cerbon', 'cerbon.geojson', '19810', '#b300ad', 'Sunday/16/Jun/2024-15:23:38:pm'),
-(5, '63.04.06', 'Mandastana', 'mandastana.geojson', '19890', '#09d7d4', 'Sunday/16/Jun/2024-15:23:58:pm'),
-(6, '63.04.15', 'Marabahan', 'marabahan.geojson', '14371', '#dbeb00', 'Sunday/16/Jun/2024-15:24:06:pm'),
-(7, '63.04.11', 'Kuripan', 'kuripan.geojson', '920', '#b30036', 'Friday/21/Jun/2024-12:25:13:pm'),
-(8, '63.04.13', 'Mekarsari', 'mekarsari.geojson', '23005', '#700000', 'Thursday/20/Jun/2024-16:33:37:pm'),
-(9, '63.04.01', 'Tabunganen', 'tabunganen.geojson', '45189', '#853c00', 'Thursday/20/Jun/2024-19:44:05:pm'),
-(10, '63.04.16', 'Wanaraya', 'wanaraya.geojson', '10945', '#9e007c', 'Thursday/20/Jun/2024-19:47:09:pm'),
-(11, '63.04.02', 'Tamban', 'tamban.geojson', '28352', '#00209e', 'Thursday/20/Jun/2024-19:50:45:pm'),
-(12, '63.04.17', 'Jejangkit', 'jejangkit.geojson', '15354', '#609a6c', 'Friday/21/Jun/2024-12:26:16:pm'),
-(13, '63.04.14', 'Barambai', 'barambai.geojson', '30076', '#cc5c00', 'Friday/21/Jun/2024-12:21:47:pm'),
-(14, '63.04.10', 'Bakumpai', 'bakumpai.geojson', '17543', '#32bd00', 'Friday/21/Jun/2024-12:22:27:pm'),
-(15, '63.04.08', 'Belawang', 'belawang.geojson', '20888', '#f39c12', 'Friday/21/Jun/2024-12:23:03:pm'),
-(16, '63.04.07', 'Rantau Badauh', 'rantau_badauh.geojson', '28166', '#76056c', 'Friday/21/Jun/2024-12:23:39:pm'),
-(17, '63.04.12', 'Tabukan', 'tabukan.geojson', '21310', '#fa009e', 'Friday/21/Jun/2024-12:24:40:pm');
+(1, '63.04.04', 'Anjir Muara', 'anjir_muara.geojson', '27832', '#ff0000', 'Minggu/30/Jun/2024-17:21:43:pm'),
+(2, '63.04.05', 'Alalak', 'alalak.geojson', '12918', '#00b344', 'Minggu/30/Jun/2024-17:22:25:pm'),
+(3, '63.04.03', 'Anjir Pasar', 'anjir_pasar.geojson', '32762', '#ccaa00', 'Minggu/30/Jun/2024-17:22:28:pm'),
+(4, '63.04.09', 'Cerbon', 'cerbon.geojson', '19810', '#b300ad', 'Minggu/30/Jun/2024-17:22:34:pm'),
+(5, '63.04.06', 'Mandastana', 'mandastana.geojson', '19890', '#09d7d4', 'Minggu/30/Jun/2024-17:22:38:pm'),
+(6, '63.04.15', 'Marabahan', 'marabahan.geojson', '14371', '#dbeb00', 'Minggu/30/Jun/2024-17:22:50:pm'),
+(7, '63.04.11', 'Kuripan', 'kuripan.geojson', '920', '#b30036', 'Minggu/30/Jun/2024-17:22:54:pm'),
+(8, '63.04.13', 'Mekarsari', 'mekarsari.geojson', '23005', '#700000', 'Minggu/30/Jun/2024-17:22:59:pm'),
+(9, '63.04.01', 'Tabunganen', 'tabunganen.geojson', '45189', '#853c00', 'Minggu/30/Jun/2024-17:23:02:pm'),
+(10, '63.04.16', 'Wanaraya', 'wanaraya.geojson', '10945', '#9e007c', 'Minggu/30/Jun/2024-17:23:06:pm'),
+(11, '63.04.02', 'Tamban', 'tamban.geojson', '28352', '#00209e', 'Minggu/30/Jun/2024-17:23:21:pm'),
+(12, '63.04.17', 'Jejangkit', 'jejangkit.geojson', '15354', '#609a6c', 'Minggu/30/Jun/2024-17:23:26:pm'),
+(13, '63.04.14', 'Barambai', 'barambai.geojson', '30076', '#cc5c00', 'Minggu/30/Jun/2024-17:23:31:pm'),
+(14, '63.04.10', 'Bakumpai', 'bakumpai.geojson', '17543', '#32bd00', 'Minggu/30/Jun/2024-17:23:36:pm'),
+(15, '63.04.08', 'Belawang', 'belawang.geojson', '20888', '#f39c12', 'Minggu/30/Jun/2024-17:23:40:pm'),
+(16, '63.04.07', 'Rantau Badauh', 'rantau_badauh.geojson', '28166', '#76056c', 'Minggu/30/Jun/2024-17:23:45:pm'),
+(17, '63.04.12', 'Tabukan', 'tabukan.geojson', '21310', '#fa009e', 'Minggu/30/Jun/2024-17:23:49:pm');
 
 -- --------------------------------------------------------
 
@@ -113,12 +113,9 @@ CREATE TABLE `pengguna` (
 --
 
 INSERT INTO `pengguna` (`id_pengguna`, `nm_pengguna`, `kt_sandi`, `level`) VALUES
-(1, 'Ahmad S', 'ahmad123', 'Administrator'),
-(2, 'Gita', '123', 'Administrator'),
-(3, 'Zakki', '123', 'Administrator'),
-(4, 'Hambali', '123', 'Administrator'),
-(5, 'Test', '123', 'Kepala'),
-(6, 'Asai', 'asai123', 'Super Admin');
+(1, 'Ahmad S', 'ahmad1234', 'Super Admin'),
+(2, 'Asai', 'asai1234', 'Administrator'),
+(3, 'Kepala 1', 'kepala123', 'Kepala');
 
 -- --------------------------------------------------------
 
@@ -211,7 +208,7 @@ ALTER TABLE `m_kecamatan`
 -- AUTO_INCREMENT for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id_pengguna` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_pengguna` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `t_pangan`
