@@ -25,15 +25,15 @@
 <!-- AdminLTE for demo purposes -->
 <script src="<?= templates() ?>dist/js/demo.js"></script>
 <script>
-    $(document).ready(function() {
-        $('.sidebar-menu').tree();
-        // $('table.table').DataTable();
-        new DataTable('table.table', {
-            layout: {
-                topStart: {
-                    buttons: ['copy', 'csv', 'excel', 'pdf', 'print', 'colvis']
-                }
+$(document).ready(function() {
+    $('.sidebar-menu').tree();
+
+    new DataTable('table.table', {
+        layout: {
+            topStart: {
+                buttons: ['copy', 'csv', 'excel', 'pdf', 'print', 'colvis']
             }
-        });
-    })
+        }
+    });
+})
 </script>

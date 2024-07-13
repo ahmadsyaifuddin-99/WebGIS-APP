@@ -10,13 +10,40 @@ $url = 'laporan';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        .signature-section {
+            display: none;
+            margin-top: 50px;
+        }
+
+        .signature-section .sign-box {
+            width: 50%;
+            float: left;
+            text-align: center;
+        }
+
+        .signature-section .sign-box.right {
+            float: right;
+        }
+
+        .signature-section .clear {
+            clear: both;
+        }
+
+        @media print {
+            .signature-section {
+                display: block;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
     <div class="container-fluid">
 
-        <h4>Laporan Pengisian Data Pangan Unggulan Kecamatan di Kab. Barito Kuala</h4>
+        <h4>Laporan Pengisian Data Pangan Unggulan (Padi) Kecamatan di Kab. Barito Kuala</h4>
         <div class="table-responsive">
             <table class="table table-hover table-bordered mt-3">
                 <thead>
@@ -84,20 +111,53 @@ $url = 'laporan';
                     $db->close();
                     ?>
                 </tbody>
+
                 <tfoot>
                     <tr class="danger">
                         <td colspan="4">
-                            <b>Total Pangan Unggulan di Kab. Batola</b>
+                            <b>Total Pangan Unggulan (Padi) di Kab. Batola</b>
                         </td>
                         <td colspan="1">
                             <b><?php echo $totalTon ?> ton </b>
                         </td>
+                        <td></td>
                     </tr>
                 </tfoot>
+
             </table>
+
+            <!-- Tanda Tangan Scan-->
+            <!-- <div class="signature-section" style="margin-top: 50px;">
+                <div style="width: 50%; float: left; text-align: center;">
+                    <p>Dosen Pengampu</p>
+                    <img src="path/to/signature_dosen.png" alt="Tanda Tangan Dosen" style="width: 150px; height: auto;">
+                    <p><b>Nama Dosen</b></p>
+                </div>
+                <div style="width: 50%; float: right; text-align: center;">
+                    <p>Ketua Kelompok</p>
+                    <img src="path/to/signature_ketua.png" alt="Tanda Tangan Ketua Kelompok" style="width: 150px; height: auto;">
+                    <p><b>Nama Ketua Kelompok</b></p>
+                </div>
+                <div style="clear: both;"></div>
+            </div> -->
+
         </div>
 
         <br>
+
+        <div class="signature-section">
+            <div class="sign-box">
+                <p>Dosen Pengampu</p>
+                <br><br><br><br>
+                <p><b>Nama Dosen</b></p>
+            </div>
+            <div class="sign-box right">
+                <p>Ketua Kelompok</p>
+                <br><br><br><br>
+                <p><b>Nama Ketua Kelompok</b></p>
+            </div>
+            <div class="clear"></div>
+        </div>
 
         <h4>Laporan Pengisian Titik-titik Data Pangan di Kab. Barito Kuala</h4>
         <div class="table-responsive">
@@ -164,6 +224,7 @@ $url = 'laporan';
         </div>
 
     </div>
+
 
 </body>
 
